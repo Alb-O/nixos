@@ -62,4 +62,6 @@
     enable = true;
     polkitPolicyOwners = [ "albert" ];
   };
+
+  environment.etc."1password/custom_allowed_browsers".text = ".zen-wrapped";
 }
