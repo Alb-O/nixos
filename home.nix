@@ -33,6 +33,19 @@
     _1password-cli
   ];
 
+  programs.kitty.enable = true;
+  programs.kitty.font.name = "JetBrainsMono Nerd Font";
+
+  programs.zen-browser.enable = true;
+  programs.zen-browser.policies = {
+    ExtensionSettings = {
+      "d634138d-c276-4fc8-924b-40a0ea21d284" = {
+        install_url = "https://addons.mozilla.org/firefox/downloads/file/4314129/1password_x_password_manager-8.11.0.xpi";
+        installation_mode = "force_installed";
+      };
+    };
+  };
+
   # Let Home Manager manage itself
   programs.home-manager.enable = true;
 }
