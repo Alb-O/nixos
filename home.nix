@@ -20,6 +20,7 @@
   programs.zen-browser.enable = true;
 
   programs.kitty.enable = true;
+  programs.kitty.font.name = "JetBrainsMono Nerd Font";
   wayland.windowManager.hyprland.enable = true;
 
   wayland.windowManager.hyprland.settings = {
@@ -75,6 +76,7 @@
   # The home.packages option allows you to install packages into your
   # user profile.
   home.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
     helix
     git
     fastfetch
