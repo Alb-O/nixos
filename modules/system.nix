@@ -1,4 +1,3 @@
-# /home/albert/.config/nixos/modules/system.nix
 { config, pkgs, ... }:
 
 {
@@ -59,7 +58,6 @@
   services.displayManager.ly.enable = true;
 
   programs.hyprland.enable = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  
+   
   system.stateVersion = "25.05";
 }

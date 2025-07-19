@@ -1,4 +1,3 @@
-# /home/albert/.config/nixos/configuration.nix
 { config, pkgs, ... }:
 
 {

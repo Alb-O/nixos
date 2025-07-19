@@ -18,11 +18,22 @@
   ];
 
   programs.zen-browser.enable = true;
+
+  programs.kitty.enable = true;
+  wayland.windowManager.hyprland.enable = true;
+
+  wayland.windowManager.hyprland.settings = {
+    "$mod" = "SUPER";
+    "bind" = [
+      "$mod, Return, exec, kitty"
+      "$mod, Q, killactive,"
+      "$mod, M, exit,"
+    ];
+  };
   
   # The home.packages option allows you to install packages into your
   # user profile.
   home.packages = with pkgs; [
-    kitty
     helix
     git
     fastfetch
