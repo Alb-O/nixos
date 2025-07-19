@@ -4,6 +4,13 @@
 {
   wayland.windowManager.hyprland.enable = true;
   wayland.windowManager.hyprland.settings = {
+    "general" = {
+      gaps_in = 5;
+      gaps_out = 15;
+      border_size = 2;
+      "col.active_border" = "rgba(dbbfefee)";
+      "col.inactive_border" = "rgba(59595900)";
+    };
     "input" = {
       kb_options = "caps:swapescape";
     };
@@ -54,6 +61,41 @@
     "bindm" = [
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
+    ];
+    "animations" = {
+      enabled = "no";
+    };
+    "misc" = {
+      force_default_wallpaper = 0;
+      disable_hyprland_logo = true;
+      middle_click_paste = false;
+    };
+    "decoration" = {
+      shadow = {
+        enabled = false;
+      };
+      blur = {
+        enabled = false;
+      };
+    };
+    "gestures" = {
+      workspace_swipe = true;
+    };
+    "exec-once" = [
+      "1password-gui --silent"
+      "swww init"
+      "swww-daemon"
+      "swww clear '#3b224c'"
+    ];
+    "workspace" = [
+      "w[tv1], gapsout:0, gapsin:0"
+      "f[1], gapsout:0, gapsin:0"
+    ];
+    "windowrule" = [
+      "bordersize 0, floating:0, onworkspace:w[tv1]"
+      "rounding 0, floating:0, onworkspace:w[tv1]"
+      "bordersize 0, floating:0, onworkspace:f[1]"
+      "rounding 0, floating:0, onworkspace:f[1]"
     ];
   };
 }

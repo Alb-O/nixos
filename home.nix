@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -16,6 +22,7 @@
   imports = [
     ./modules/hyprland.nix
     ./modules/kitty.nix
+    ./modules/fish.nix
     inputs.sops-nix.homeManagerModules.sops
   ];
 
@@ -31,7 +38,7 @@
     path = "/home/albert/.ssh/allowed_signers";
     mode = "0644";
   };
-  
+
   # The home.packages option allows you to install packages into your
   # user profile.
   home.packages = with pkgs; [
@@ -44,8 +51,12 @@
     gh
     fuzzel
     _1password-cli
+    _1password-gui
     age
     sops
+    inputs.swww.packages.${pkgs.system}.swww
+    nil
+    nixd
   ];
 
   home.sessionVariables = {
@@ -57,13 +68,21 @@
     profiles.albert = {
       search.engines = {
         "Nix Packages" = {
-          urls = [{
-            template = "https://search.nixos.org/packages";
-            params = [
-              { name = "type"; value = "packages"; }
-              { name = "query"; value = "{searchTerms}"; }
-            ];
-          }];
+          urls = [
+            {
+              template = "https://search.nixos.org/packages";
+              params = [
+                {
+                  name = "type";
+                  value = "packages";
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@np" ];
         };
