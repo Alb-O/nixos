@@ -55,4 +55,11 @@
   ];
    
   system.stateVersion = "25.05";
+
+  security.polkit.enable = true;
+
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "albert" ];
+  };
 }

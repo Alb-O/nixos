@@ -30,6 +30,7 @@
     gemini-cli
     gh
     fuzzel
+    _1password-cli
   ];
 
   # Let Home Manager manage itself
