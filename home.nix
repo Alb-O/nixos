@@ -15,6 +15,7 @@
 
   imports = [
     ./modules/hyprland.nix
+    ./modules/kitty.nix
     inputs.sops-nix.homeManagerModules.sops
   ];
 
@@ -22,9 +23,13 @@
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/albert/.config/sops/age/keys.txt";
 
-    sops.secrets.git-signing-key = {
+  sops.secrets.git-signing-key = {
     path = "/home/albert/.ssh/signing.key";
     mode = "0600";
+  };
+  sops.secrets.allowed_signers = {
+    path = "/home/albert/.ssh/allowed_signers";
+    mode = "0644";
   };
   
   # The home.packages option allows you to install packages into your
@@ -46,9 +51,6 @@
   home.sessionVariables = {
     EDITOR = "hx";
   };
-
-  programs.kitty.enable = true;
-  programs.kitty.font.name = "JetBrainsMono Nerd Font";
 
   programs.firefox = {
     enable = true;
@@ -108,7 +110,7 @@
         format = "ssh";
       };
       "gpg \"ssh\"" = {
-        program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
+        program = "${pkgs._1password-gui}/bin/op-ssh-sign";
       };
       commit = {
         gpgsign = true;
@@ -116,6 +118,9 @@
 
       user = {
         signingKey = "/home/albert/.ssh/signing.key";
+      };
+      "gpg.ssh" = {
+        allowedSignersFile = "/home/albert/.ssh/allowed_signers";
       };
     };
   };
