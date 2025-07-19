@@ -2,8 +2,6 @@
 { config, pkgs, ... }:
 
 {
-  
-
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -56,9 +54,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # System-wide packages are now managed by home-manager in home.nix
-  environment.systemPackages = with pkgs; [];
-
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
@@ -66,8 +61,6 @@
 
   programs.hyprland.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
   
-
   system.stateVersion = "25.05";
 }

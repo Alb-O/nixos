@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -13,21 +13,23 @@
   # You can update this value when you update Home Manager.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  # The home.packages option allows you to install packages into your
-  # user profile.
-  home.packages = [
-    pkgs.git
-    pkgs.neovim
-    pkgs.ripgrep
-    pkgs.fzf
+  imports = [
+    inputs.zen-browser.homeModules.twilight
   ];
 
-  # Basic git configuration
-  programs.git = {
-    enable = true;
-    userName = "Albert";
-    userEmail = "albert@example.com";
-  };
+  programs.zen-browser.enable = true;
+  
+  # The home.packages option allows you to install packages into your
+  # user profile.
+  home.packages = with pkgs; [
+    kitty
+    helix
+    git
+    fastfetch
+    ripgrep
+    fzf
+    gemini-cli
+  ];
 
   # Let Home Manager manage itself
   programs.home-manager.enable = true;
