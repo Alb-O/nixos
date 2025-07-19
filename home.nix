@@ -15,7 +15,17 @@
 
   imports = [
     ./modules/hyprland.nix
+    inputs.sops-nix.homeManagerModules.sops
   ];
+
+  sops.defaultSopsFile = ./secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "/home/albert/.config/sops/age/keys.txt";
+
+    sops.secrets.git-signing-key = {
+    path = "/home/albert/.ssh/signing.key";
+    mode = "0600";
+  };
   
   # The home.packages option allows you to install packages into your
   # user profile.
@@ -29,7 +39,13 @@
     gh
     fuzzel
     _1password-cli
+    age
+    sops
   ];
+
+  home.sessionVariables = {
+    EDITOR = "hx";
+  };
 
   programs.kitty.enable = true;
   programs.kitty.font.name = "JetBrainsMono Nerd Font";
@@ -99,7 +115,7 @@
       };
 
       user = {
-        signingKey = "...";
+        signingKey = "/home/albert/.ssh/signing.key";
       };
     };
   };
