@@ -15,7 +15,6 @@
 
   imports = [
     ./modules/hyprland.nix
-    inputs.zen-browser.homeModules.twilight
   ];
   
   # The home.packages option allows you to install packages into your
@@ -36,13 +35,44 @@
   programs.kitty.enable = true;
   programs.kitty.font.name = "JetBrainsMono Nerd Font";
 
-  programs.zen-browser.enable = true;
-  programs.zen-browser.policies = {
-    ExtensionSettings = {
-      "d634138d-c276-4fc8-924b-40a0ea21d284" = {
-        install_url = "https://addons.mozilla.org/firefox/downloads/file/4314129/1password_x_password_manager-8.11.0.xpi";
-        installation_mode = "force_installed";
+  programs.firefox = {
+    enable = true;
+    profiles.albert = {
+      search.engines = {
+        "Nix Packages" = {
+          urls = [{
+            template = "https://search.nixos.org/packages";
+            params = [
+              { name = "type"; value = "packages"; }
+              { name = "query"; value = "{searchTerms}"; }
+            ];
+          }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@np" ];
+        };
       };
+      search.force = true;
+
+      bookmarks = [
+        {
+          name = "wikipedia";
+          tags = [ "wiki" ];
+          keyword = "wiki";
+          url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
+        }
+      ];
+
+      settings = {
+        "dom.security.https_only_mode" = true;
+        "browser.download.panel.shown" = true;
+        "identity.fxaccounts.enabled" = false;
+        "signon.rememberSignons" = false;
+      };
+
+      extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+        _1password-x-password-manager
+        ublock-origin
+      ];
     };
   };
 
