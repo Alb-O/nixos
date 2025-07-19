@@ -40,9 +40,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 

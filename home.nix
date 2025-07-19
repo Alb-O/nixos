@@ -53,14 +53,17 @@
       };
       search.force = true;
 
-      bookmarks = [
-        {
-          name = "wikipedia";
-          tags = [ "wiki" ];
-          keyword = "wiki";
-          url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
-        }
-      ];
+      bookmarks = {
+        force = true;
+        settings = [
+          {
+            name = "wikipedia";
+            tags = [ "wiki" ];
+            keyword = "wiki";
+            url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
+          }
+        ];
+      };
 
       settings = {
         "dom.security.https_only_mode" = true;
@@ -68,10 +71,9 @@
         "identity.fxaccounts.enabled" = false;
         "signon.rememberSignons" = false;
       };
-
-      extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-        _1password-x-password-manager
-        ublock-origin
+      extensions.packages = [
+        pkgs.nur.repos.rycee.firefox-addons."onepassword-password-manager"
+        pkgs.nur.repos.rycee.firefox-addons.ublock-origin
       ];
     };
   };
