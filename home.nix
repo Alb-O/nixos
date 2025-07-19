@@ -19,12 +19,12 @@
   # You can update this value when you update Home Manager.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  imports = [
-    ./modules/hyprland.nix
-    ./modules/kitty.nix
-    ./modules/fish.nix
-    inputs.sops-nix.homeManagerModules.sops
-  ];
+   imports = [
+     ./modules/hyprland.nix
+     ./modules/kitty.nix
+     ./modules/fish.nix
+     inputs.sops-nix.homeManagerModules.sops
+   ];
 
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
@@ -54,9 +54,9 @@
     _1password-gui
     age
     sops
-    inputs.swww.packages.${pkgs.system}.swww
     nil
     nixd
+    opencode
   ];
 
   home.sessionVariables = {

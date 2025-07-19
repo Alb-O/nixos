@@ -45,7 +45,10 @@
 
   services.displayManager.ly.enable = true;
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+  enable = true;
+  withUWSM = true;
+};
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
@@ -54,6 +57,9 @@
   system.stateVersion = "25.05";
 
   security.polkit.enable = true;
+
+  # Explicitly use dbus-broker as the system bus implementation
+  services.dbus.implementation = "broker";
 
   programs._1password-gui = {
     enable = true;

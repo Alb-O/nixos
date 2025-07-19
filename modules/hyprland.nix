@@ -3,6 +3,7 @@
 
 {
   wayland.windowManager.hyprland.enable = true;
+  wayland.windowManager.hyprland.systemd.enable = false;
   wayland.windowManager.hyprland.settings = {
     "general" = {
       gaps_in = 5;
@@ -82,10 +83,9 @@
       workspace_swipe = true;
     };
     "exec-once" = [
-      "1password-gui --silent"
-      "swww init"
-      "swww-daemon"
-      "swww clear '#3b224c'"
+      "uwsm app -- 1password-gui --silent"
+      "uwsm app -- swww-daemon"
+      "uwsm app -- swww clear '#3b224c'"
     ];
     "workspace" = [
       "w[tv1], gapsout:0, gapsin:0"
