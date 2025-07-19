@@ -23,6 +23,9 @@
   wayland.windowManager.hyprland.enable = true;
 
   wayland.windowManager.hyprland.settings = {
+    "input" = {
+      kb_options = "caps:swapescape";
+    };
     "$mod" = "SUPER";
     "bind" = [
       # Applications

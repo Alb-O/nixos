@@ -33,15 +33,6 @@
   systemd.tpm2.enable = false;
   boot.initrd.systemd.tpm2.enable = false;
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "au";
-    variant = "";
-  };
-
-  services.xserver.xkb.options = "caps:swapescape";
-  console.useXkbConfig = true;
-
   # Define a user account.
   users.users.albert = {
     isNormalUser = true;
