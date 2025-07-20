@@ -71,6 +71,7 @@
     grc
     _1password-cli
     _1password-gui
+    markdown-oxide
   ];
 
 
