@@ -42,7 +42,6 @@ in
     }
     // keybindings.keybindings
     // autostart.autostart
-    // { extraConfig = rules; }
-    { extraConfig = rules; }
+    extraConfig = rules;
     );
 }
