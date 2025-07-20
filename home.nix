@@ -25,7 +25,7 @@ in
         format = "ssh";
       };
       "gpg \"ssh\"" = {
-        program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+        program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
       };
       commit = {
         gpgsign = true;
