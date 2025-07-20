@@ -1,80 +1,67 @@
 { config, pkgs, ... }:
 
-{
+let
+  styles = import ./styles.nix;
+
+in {
   programs.kitty = {
     enable = true;
-    font.name = "JetBrainsMono Nerd Font";
+    font.name = styles.font;
     settings = {
       # The basic colors
-      foreground = "#ffffff";
-      background = "#3b224c";
-      selection_foreground = "#3b224c";
-      selection_background = "#dbbfef";
+      foreground = styles.foreground;
+      background = styles.background;
+      selection_foreground = styles.selection_foreground;
+      selection_background = styles.selection_background;
 
       # Cursor colors
-      cursor = "#ffffff";
-      cursor_text_color = "#3b224c";
+      cursor = styles.cursor;
+      cursor_text_color = styles.cursor_text_color;
 
       # URL underline color when hovering with mouse
-      url_color = "#dbbfef";
+      url_color = styles.url_color;
 
       # Kitty window border colors
-      active_border_color = "#dbbfef";
-      inactive_border_color = "#5a5977";
-      bell_border_color = "#efba5d";
+      active_border_color = styles.active_border_color;
+      inactive_border_color = styles.inactive_border_color;
+      bell_border_color = styles.bell_border_color;
 
       # OS Window titlebar colors
       wayland_titlebar_color = "system";
       macos_titlebar_color = "system";
 
       # Tab bar colors
-      active_tab_foreground = "#3b224c";
-      active_tab_background = "#dbbfef";
-      inactive_tab_foreground = "#a4a0e8";
-      inactive_tab_background = "#281733";
-      tab_bar_background = "#3b224c";
+      active_tab_foreground = styles.active_tab_foreground;
+      active_tab_background = styles.active_tab_background;
+      inactive_tab_foreground = styles.inactive_tab_foreground;
+      inactive_tab_background = styles.inactive_tab_background;
+      tab_bar_background = styles.tab_bar_background;
 
       # Colors for marks (marked text in the terminal)
-      mark1_foreground = "#3b224c";
-      mark1_background = "#dbbfef";
-      mark2_foreground = "#3b224c";
-      mark2_background = "#a4a0e8";
-      mark3_foreground = "#3b224c";
-      mark3_background = "#7aa2f7";
+      mark1_foreground = styles.mark1_foreground;
+      mark1_background = styles.mark1_background;
+      mark2_foreground = styles.mark2_foreground;
+      mark2_background = styles.mark2_background;
+      mark3_foreground = styles.mark3_foreground;
+      mark3_background = styles.mark3_background;
 
       # The 16 terminal colors
-
-      # black
-      color0 = "#281733";
-      color8 = "#5a5977";
-
-      # red
-      color1 = "#f47868";
-      color9 = "#f47868";
-
-      # green
-      color2 = "#9ff28f";
-      color10 = "#9ff28f";
-
-      # yellow
-      color3 = "#efba5d";
-      color11 = "#ffcd1c";
-
-      # blue
-      color4 = "#7aa2f7";
-      color12 = "#a4a0e8";
-
-      # magenta
-      color5 = "#dbbfef";
-      color13 = "#dbbfef";
-
-      # cyan
-      color6 = "#697C81";
-      color14 = "#cccccc";
-
-      # white
-      color7 = "#a4a0e8";
-      color15 = "#ffffff";
+      color0 = styles.color0;
+      color1 = styles.color1;
+      color2 = styles.color2;
+      color3 = styles.color3;
+      color4 = styles.color4;
+      color5 = styles.color5;
+      color6 = styles.color6;
+      color7 = styles.color7;
+      color8 = styles.color8;
+      color9 = styles.color9;
+      color10 = styles.color10;
+      color11 = styles.color11;
+      color12 = styles.color12;
+      color13 = styles.color13;
+      color14 = styles.color14;
+      color15 = styles.color15;
     };
   };
 }
