@@ -39,8 +39,12 @@ in
       workspace_swipe = true;
     };
     # Merge in keybindings and autostart
-    inherit (keybindings.keybindings) $mod bind bindm;
-    inherit (autostart.autostart) "exec-once" workspace windowrule;
+    "$mod" = keybindings.keybindings."$mod";
+    bind = keybindings.keybindings.bind;
+    bindm = keybindings.keybindings.bindm;
+    "exec-once" = autostart.autostart."exec-once";
+    workspace = autostart.autostart.workspace;
+    windowrule = autostart.autostart.windowrule;
     extraConfig = rules;
   };
 }
