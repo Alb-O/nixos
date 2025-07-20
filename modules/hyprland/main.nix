@@ -43,16 +43,6 @@ in
     // keybindings.keybindings
     // autostart.autostart
     // { extraConfig = rules; }
-    // Add window/layer rules as extraConfig
-    // This merges the rules.nix content as raw config lines
-    // into the Hyprland config.
-    // See: https://nix-community.github.io/home-manager/options.html#opt-wayland.windowManager.hyprland.extraConfig
-    //
-    // The curly braces below create an attrset to merge with the rest.
-    // This is the idiomatic way to append extraConfig in Nix.
-    //
-    // If you want to add more raw config, just append to rules.nix.
-    //
     { extraConfig = rules; }
     );
 }
