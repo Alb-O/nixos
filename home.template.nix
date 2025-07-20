@@ -1,23 +1,9 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
+{ config, pkgs, lib, inputs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
   home.username = "albert";
   home.homeDirectory = "/home/albert";
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You can update this value when you update Home Manager.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+  home.stateVersion = "23.11";
 
   imports = [
     ./modules/hyprland/main.nix
@@ -41,18 +27,18 @@
       commit = {
         gpgsign = true;
       };
-
       user = {
-        signingKey = builtins.getEnv "GIT_SIGNING_KEY_PATH";
+        signingKey = "{{ op://Private/Git Signing Key/public key }}";
       };
       "gpg.ssh" = {
-        allowedSignersFile = "${pkgs.writeText "allowed_signers" (builtins.getEnv "ALLOWED_SIGNERS")}";
+        allowedSignersFile = "${pkgs.writeText "allowed_signers" "{{ op://Private/Git Signing Key/allowed signers }}"}";
       };
     };
+    userEmail = "{{ op://Private/ixgbknp6vfhnoaczpcwbvz7r4u/Internet Details/email }}";
   };
 
-  # The home.packages option allows you to install packages into your
-  # user profile.
+  home.file.".ssh/id_ed25519.pub".text = "{{ op://Private/Git Signing Key/public key }}";
+
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     helix
@@ -73,8 +59,6 @@
     _1password-gui
     markdown-oxide
   ];
-
-
 
   home.sessionVariables = {
     EDITOR = "hx";
@@ -107,7 +91,6 @@
         };
       };
       search.force = true;
-
       bookmarks = {
         force = true;
         settings = [
@@ -119,7 +102,6 @@
           }
         ];
       };
-
       settings = {
         "dom.security.https_only_mode" = true;
         "browser.download.panel.shown" = true;
@@ -132,7 +114,6 @@
       ];
     };
   };
-
 
   # Let Home Manager manage itself
   # programs.home-manager.enable = true;
