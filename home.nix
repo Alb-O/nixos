@@ -26,6 +26,8 @@
      inputs.sops-nix.homeManagerModules.sops
    ];
 
+  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
+
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/albert/.config/sops/age/keys.txt";

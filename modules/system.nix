@@ -41,9 +41,12 @@
   };
 
   programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
+  users.defaultUserShell = pkgs.bash;
 
-  services.displayManager.ly.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
 
   programs.hyprland = {
   enable = true;
@@ -60,6 +63,7 @@
 
   # Explicitly use dbus-broker as the system bus implementation
   services.dbus.implementation = "broker";
+  services.dbus.packages = [ pkgs.dbus ];
 
   programs._1password-gui = {
     enable = true;
