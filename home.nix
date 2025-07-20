@@ -24,23 +24,31 @@
     ./modules/kitty.nix
     ./modules/fish.nix
     ./modules/fuzzel.nix
-    inputs.sops-nix.homeManagerModules.sops
   ];
 
   xdg.configFile."uwsm/env".source =
     "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
 
-  sops.defaultSopsFile = ./secrets/secrets.yaml;
-  sops.defaultSopsFormat = "yaml";
-  sops.age.keyFile = "/home/albert/.config/sops/age/keys.txt";
+  programs.git = {
+    enable = true;
+    extraConfig = {
+      gpg = {
+        format = "ssh";
+      };
+      "gpg \"ssh\"" = {
+        program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+      };
+      commit = {
+        gpgsign = true;
+      };
 
-  sops.secrets.git-signing-key = {
-    path = "/home/albert/.ssh/signing.key";
-    mode = "0600";
-  };
-  sops.secrets.allowed_signers = {
-    path = "/home/albert/.ssh/allowed_signers";
-    mode = "0644";
+      user = {
+        signingKey = "/tmp/placeholder-signing-key";
+      };
+      "gpg.ssh" = {
+        allowedSignersFile = "${pkgs.writeText "allowed_signers" "placeholder"}";
+      };
+    };
   };
 
   # The home.packages option allows you to install packages into your
@@ -54,8 +62,6 @@
     gemini-cli
     gh
     fuzzel
-    _1password-cli
-    _1password-gui
     age
     sops
     nil
@@ -63,7 +69,11 @@
     opencode
     swww
     grc
+    _1password-cli
+    _1password-gui
   ];
+
+
 
   home.sessionVariables = {
     EDITOR = "hx";
@@ -122,38 +132,9 @@
     };
   };
 
-  programs.ssh = {
-    enable = true;
-    extraConfig = ''
-      Host *
-          IdentityAgent ~/.1password/ag
-    '';
-  };
-
-  programs.git = {
-    enable = true;
-    extraConfig = {
-      gpg = {
-        format = "ssh";
-      };
-      "gpg \"ssh\"" = {
-        program = "${pkgs._1password-gui}/bin/op-ssh-sign";
-      };
-      commit = {
-        gpgsign = true;
-      };
-
-      user = {
-        signingKey = "/home/albert/.ssh/signing.key";
-      };
-      "gpg.ssh" = {
-        allowedSignersFile = "/home/albert/.ssh/allowed_signers";
-      };
-    };
-  };
 
   # Let Home Manager manage itself
-  programs.home-manager.enable = true;
+  # programs.home-manager.enable = true;
 
   systemd.user.services.swww-daemon = {
     Unit = {

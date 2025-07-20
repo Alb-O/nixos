@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Bootloader
@@ -76,6 +76,12 @@
   services.dbus.implementation = "broker";
   services.dbus.packages = [ pkgs.dbus ];
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "1password-gui"
+    "1password"
+  ];
+
+  programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
     polkitPolicyOwners = [ "albert" ];
