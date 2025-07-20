@@ -60,10 +60,14 @@
     nil
     nixd
     opencode
+    swww
+    grc
   ];
 
   home.sessionVariables = {
     EDITOR = "hx";
+    TERMINAL = "kitty -e fish";
+    NIXOS_OZONE_WL = "1";
   };
 
   programs.firefox = {

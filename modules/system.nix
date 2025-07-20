@@ -5,7 +5,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -25,7 +28,7 @@
     LC_TELEPHONE = "en_AU.UTF-8";
     LC_TIME = "en_AU.UTF-8";
   };
-  
+
   # No sudo password for wheel users
   security.sudo.wheelNeedsPassword = false;
 
@@ -37,7 +40,10 @@
   users.users.albert = {
     isNormalUser = true;
     description = "albert";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   programs.fish.enable = true;
@@ -49,14 +55,14 @@
   };
 
   programs.hyprland = {
-  enable = true;
-  withUWSM = true;
-};
+    enable = true;
+    withUWSM = true;
+  };
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
-   
+
   system.stateVersion = "25.05";
 
   security.polkit.enable = true;

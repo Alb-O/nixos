@@ -18,7 +18,7 @@
     "$mod" = "SUPER";
     "bind" = [
       # Applications
-      "$mod, Return, exec, kitty"
+      "$mod, Return, exec, kitty -e fish"
       "$mod, D, exec, fuzzel"
 
       # Window Management
@@ -85,7 +85,7 @@
     "exec-once" = [
       "uwsm app -- 1password-gui --silent"
       "uwsm app -- swww-daemon"
-      "uwsm app -- swww clear '#3b224c'"
+      "swww clear '#3b224c'"
     ];
     "workspace" = [
       "w[tv1], gapsout:0, gapsin:0"
