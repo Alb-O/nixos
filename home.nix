@@ -23,6 +23,7 @@
      ./modules/hyprland.nix
      ./modules/kitty.nix
      ./modules/fish.nix
+     ./modules/fuzzel.nix
      inputs.sops-nix.homeManagerModules.sops
    ];
 
