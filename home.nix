@@ -1,5 +1,8 @@
 { config, pkgs, lib, inputs, ... }:
 
+let
+  secrets = import ./secrets.nix;
+in
 {
   home.username = "albert";
   home.homeDirectory = "/home/albert";
@@ -28,16 +31,16 @@
         gpgsign = true;
       };
       user = {
-        signingKey = "{{ op://Private/Git Signing Key/public key }}";
+        signingKey = secrets.signingKey;
       };
       "gpg.ssh" = {
-        allowedSignersFile = "${pkgs.writeText "allowed_signers" "{{ op://Private/Git Signing Key/allowed signers }}"}";
+        allowedSignersFile = "${pkgs.writeText "allowed_signers" secrets.allowedSigners}";
       };
     };
-    userEmail = "{{ op://Private/ixgbknp6vfhnoaczpcwbvz7r4u/Internet Details/email }}";
+    userEmail = secrets.email;
   };
 
-  home.file.".ssh/id_ed25519.pub".text = "{{ op://Private/Git Signing Key/public key }}";
+  home.file.".ssh/id_ed25519.pub".text = secrets.pubkey;
 
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
