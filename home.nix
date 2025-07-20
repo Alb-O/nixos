@@ -43,10 +43,10 @@
       };
 
       user = {
-        signingKey = "/tmp/placeholder-signing-key";
+        signingKey = builtins.getEnv "GIT_SIGNING_KEY_PATH";
       };
       "gpg.ssh" = {
-        allowedSignersFile = "${pkgs.writeText "allowed_signers" "placeholder"}";
+        allowedSignersFile = "${pkgs.writeText "allowed_signers" (builtins.getEnv "ALLOWED_SIGNERS")}";
       };
     };
   };
