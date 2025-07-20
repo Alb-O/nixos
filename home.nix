@@ -20,7 +20,7 @@
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
    imports = [
-     ./modules/hyprland.nix
+     ./modules/hyprland/main.nix
      ./modules/kitty.nix
      ./modules/fish.nix
      ./modules/fuzzel.nix
