@@ -45,6 +45,6 @@ in
     "exec-once" = autostart.autostart."exec-once";
     workspace = autostart.autostart.workspace;
     windowrule = autostart.autostart.windowrule;
-    extraConfig = rules;
   };
+  wayland.windowManager.hyprland.extraConfig = rules;
 }
