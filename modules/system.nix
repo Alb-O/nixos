@@ -59,6 +59,11 @@
     withUWSM = true;
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+  };
+
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];

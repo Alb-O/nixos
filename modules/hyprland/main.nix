@@ -2,7 +2,6 @@
 { config, pkgs, ... }:
 let
   keybindings = import ./keybindings.nix;
-  autostart = import ./autostart.nix;
   rules = builtins.readFile ./rules.nix;
 in
 {
@@ -38,13 +37,10 @@ in
     gestures = {
       workspace_swipe = true;
     };
-    # Merge in keybindings and autostart
+    # Merge in keybindings
     "$mod" = keybindings.keybindings."$mod";
     bind = keybindings.keybindings.bind;
     bindm = keybindings.keybindings.bindm;
-    "exec-once" = autostart.autostart."exec-once";
-    workspace = autostart.autostart.workspace;
-    windowrule = autostart.autostart.windowrule;
   };
   wayland.windowManager.hyprland.extraConfig = rules;
 }

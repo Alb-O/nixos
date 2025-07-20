@@ -146,12 +146,19 @@ layerrule = ignorealpha 0.05, quickshell:backgroundWidgets
 layerrule = noanim, quickshell:screenshot
 layerrule = animation popin 120%, quickshell:screenCorners
 
-
 # Launchers need to be FAST
 layerrule = noanim, quickshell:overview
 layerrule = noanim, gtk4-layer-shell
-## outfoxxed's stuff
+# outfoxxed's stuff
 layerrule = blur, shell:bar
 layerrule = ignorezero, shell:bar
 layerrule = blur, shell:notifications
 layerrule = ignorealpha 0.1, shell:notifications
+
+# Smart gaps
+workspace=w[tv1], gapsout:0, gapsin:0
+workspace=f[1], gapsout:0, gapsin:0
+windowrule=bordersize 0, floating:0, onworkspace:w[tv1]
+windowrule=rounding 0, floating:0, onworkspace:w[tv1]
+windowrule=bordersize 0, floating:0, onworkspace:f[1]
+windowrule=rounding 0, floating:0, onworkspace:f[1]
