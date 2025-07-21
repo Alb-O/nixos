@@ -7,7 +7,7 @@ FILLED="secrets.nix"
 if [[ -f "$TEMPLATE" ]]; then
   touch "$FILLED"
   echo "[INFO] Generating $FILLED from $TEMPLATE with secrets..."
-  if ! op inject -i "$TEMPLATE" -o "$FILLED"; then
+  if ! op inject -f -i "$TEMPLATE" -o "$FILLED"; then
     echo "[ERROR] op inject failed." >&2
     exit 1
   fi

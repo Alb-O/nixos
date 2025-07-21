@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   # Bootloader
@@ -52,6 +57,9 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
+    package = pkgs.kdePackages.sddm;
+    extraPackages = with pkgs; [ sddm-astronaut ];
+    theme = "sddm-astronaut-theme";
   };
 
   programs.hyprland = {
@@ -68,18 +76,22 @@
     nerd-fonts.jetbrains-mono
   ];
 
+  environment.systemPackages = with pkgs; [ sddm-astronaut ];
+  
   system.stateVersion = "25.05";
-
+  
   security.polkit.enable = true;
 
   # Explicitly use dbus-broker as the system bus implementation
   services.dbus.implementation = "broker";
   services.dbus.packages = [ pkgs.dbus ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "1password-gui"
-    "1password"
-  ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "1password-gui"
+      "1password"
+    ];
 
   programs._1password.enable = true;
   programs._1password-gui = {

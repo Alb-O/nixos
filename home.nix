@@ -35,8 +35,15 @@ in
       };
       "gpg.ssh" = {
         allowedSignersFile = "${pkgs.writeText "allowed_signers" secrets.allowedSigners}";
-      };
+      };      
+      "credential \"https://github.com\"" = {
+        helper = "${lib.getExe' pkgs.gh "auth git-credential"}";
+      }; 
+      "credential \"https://gist.github.com\"" = {
+        helper = "${lib.getExe' pkgs.gh "auth git-credential"}";
+      }; 
     };
+    userName = secrets.name;
     userEmail = secrets.email;
   };
 
