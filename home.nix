@@ -55,6 +55,19 @@ in
     NIXOS_OZONE_WL = "1";
   };
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+  };
 
   # Let Home Manager manage itself
   # programs.home-manager.enable = true;
