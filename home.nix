@@ -65,7 +65,7 @@ in
       After = [ "graphical-session.target" ];
     };
     Service = {
-      ExecStart = "${lib.getExe pkgs.swww} daemon";
+      ExecStart = "${lib.getExe pkgs.swww}-daemon";
       ExecStartPost = "${lib.getExe pkgs.swww} clear '#3b224c'";
       Restart = "on-failure";
     };
@@ -80,7 +80,7 @@ in
       After = [ "graphical-session.target" ];
     };
     Service = {
-      ExecStart = "${lib.getExe' pkgs._1password-gui "--silent --enable-features=UseOzonePlatform --ozone-platform=wayland"}";
+      ExecStart = "${lib.getExe pkgs._1password-gui} --silent --enable-features=UseOzonePlatform --ozone-platform=wayland";
       Restart = "on-failure";
     };
     Install = {
