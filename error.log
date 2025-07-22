@@ -1,42 +1,61 @@
-[INFO] Generating secrets.nix from secrets.op.nix with secrets...
-/home/albert/.config/nixos/secrets.nix
-[INFO] Running sudo nixos-rebuild switch --flake . ...
 warning: Git tree '/home/albert/.config/nixos' is dirty
+error:
+       … from call site
+         at /nix/store/9n4k8wc1blkalgm9bgzkwmf0nq7vhb1j-source/flake.nix:12:37:
+           11|   outputs = { self, nixpkgs, home-manager, nur, ... }@inputs: {
+           12|     nixosConfigurations.hp-laptop = nixpkgs.lib.nixosSystem {
+             |                                     ^
+           13|       system = "x86_64-linux";
+
+       … while calling 'nixosSystem'
+         at /nix/store/182c2qj20sfspzxcshd6p051qdx3mx5j-source/flake.nix:65:13:
+           64|           nixosSystem =
+           65|             args:
+             |             ^
+           66|             import ./nixos/lib/eval-config.nix (
+
+       … from call site
+         at /nix/store/182c2qj20sfspzxcshd6p051qdx3mx5j-source/flake.nix:66:13:
+           65|             args:
+           66|             import ./nixos/lib/eval-config.nix (
+             |             ^
+           67|               {
+
+       error: function 'anonymous lambda' called with unexpected argument 'nixosConfigurations'
+       at /nix/store/182c2qj20sfspzxcshd6p051qdx3mx5j-source/nixos/lib/eval-config.nix:11:1:
+           10| # types.submodule instead of using eval-config.nix
+           11| evalConfigArgs@{
+             | ^
+           12|   # !!! system can be set modularly, would be nice to remove,
+warning: could not build a newer version of nixos-rebuild, using current version
 building the system configuration...
 warning: Git tree '/home/albert/.config/nixos' is dirty
 error:
-       … while calling the 'head' builtin
-         at /nix/store/3abvz230bn897gbja4y653jx152m9fqw-source/lib/attrsets.nix:1534:13:
-         1533|           if length values == 1 || pred here (elemAt values 1) (head values) then
-         1534|             head values
+       … from call site
+         at /nix/store/9n4k8wc1blkalgm9bgzkwmf0nq7vhb1j-source/flake.nix:12:37:
+           11|   outputs = { self, nixpkgs, home-manager, nur, ... }@inputs: {
+           12|     nixosConfigurations.hp-laptop = nixpkgs.lib.nixosSystem {
+             |                                     ^
+           13|       system = "x86_64-linux";
+
+       … while calling 'nixosSystem'
+         at /nix/store/182c2qj20sfspzxcshd6p051qdx3mx5j-source/flake.nix:65:13:
+           64|           nixosSystem =
+           65|             args:
              |             ^
-         1535|           else
+           66|             import ./nixos/lib/eval-config.nix (
 
-       … while evaluating the attribute 'value'
-         at /nix/store/3abvz230bn897gbja4y653jx152m9fqw-source/lib/modules.nix:1086:7:
-         1085|     // {
-         1086|       value = addErrorContext "while evaluating the option `${showOption loc}':" value;
-             |       ^
-         1087|       inherit (res.defsFinal') highestPrio;
+       … from call site
+         at /nix/store/182c2qj20sfspzxcshd6p051qdx3mx5j-source/flake.nix:66:13:
+           65|             args:
+           66|             import ./nixos/lib/eval-config.nix (
+             |             ^
+           67|               {
 
-       … while evaluating the option `system.build.toplevel':
-
-       … while evaluating definitions from `/nix/store/3abvz230bn897gbja4y653jx152m9fqw-source/nixos/modules/system/activation/top-level.nix':
-
-       … while evaluating the option `assertions':
-
-       … while evaluating definitions from `/nix/store/vy5azwwd6k22dqrbfbvcwjd1hqs4jqys-source/nixos/common.nix':
-
-       … while evaluating the option `home-manager.users.albert.assertions':
-
-       … while evaluating definitions from `/nix/store/vy5azwwd6k22dqrbfbvcwjd1hqs4jqys-source/modules/programs/swaylock.nix':
-
-       … while evaluating the option `home-manager.users.albert.programs.swaylock.enable':
-
-       … while evaluating the option `home-manager.users.albert.home.stateVersion':
-
-       (stack trace truncated; use '--show-trace' to show the full, detailed trace)
-
-       error: The option `home-manager.users.albert.home.stateVersion' was accessed but has no value defined. Try setting the option.
-Command 'nix --extra-experimental-features 'nix-command flakes' build --print-out-paths '.#nixosConfigurations."nixos".config.system.build.toplevel' --no-link' returned non-zero exit status 1.
-[ERROR] nixos-rebuild failed.
+       error: function 'anonymous lambda' called with unexpected argument 'nixosConfigurations'
+       at /nix/store/182c2qj20sfspzxcshd6p051qdx3mx5j-source/nixos/lib/eval-config.nix:11:1:
+           10| # types.submodule instead of using eval-config.nix
+           11| evalConfigArgs@{
+             | ^
+           12|   # !!! system can be set modularly, would be nice to remove,
+Command 'nix --extra-experimental-features 'nix-command flakes' build --print-out-paths '.#nixosConfigurations."hp-laptop".config.system.build.toplevel' --show-trace --no-link' returned non-zero exit status 1.

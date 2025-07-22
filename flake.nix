@@ -9,13 +9,30 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nur, ... }@inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.hp-laptop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
         { nixpkgs.overlays = [ nur.overlays.default ]; }
         { nixpkgs.config.allowUnfree = true; }
-        ./hosts/nixos
+        ./hosts/hp-laptop
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.albert = import ./home.nix;
+            extraSpecialArgs = { inherit inputs; };
+          };
+        }
+      ];
+    nixosConfigurations.desktop-gtx1080 = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
+      modules = [
+        { nixpkgs.overlays = [ nur.overlays.default ]; }
+        { nixpkgs.config.allowUnfree = true; }
+        ./hosts/desktop-gtx1080
         home-manager.nixosModules.home-manager
         {
           home-manager = {
@@ -28,4 +45,4 @@
       ];
     };
   };
-}
+};}
